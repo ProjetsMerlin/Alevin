@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="vehicles_page" name="Fleet Vehicles">
+
+    <t t-call="website.layout">
+
+      <div class="container mt-4">
+
+        <form method="get" action="/vehicules">
+
+          <div class="row mb-4">
+
+            <div class="col-md-4">
+              <input type="text" name="search" class="form-control" placeholder="Search vehicle..." t-att-value="search or ''"/>
+            </div>
+
+            <div class="col-md-3">
+              <select name="brand" class="form-select">
+
+                <option value="">
+All brands
+                </option>
+
+                <t t-foreach="brands" t-as="b">
+
+                  <option t-att-value="b" t-att-selected="b == brand">
+
+                    <t t-esc="b"/>
+
+                  </option>
+
+                </t>
+
+              </select>
+            </div>
+
+            <div class="col-md-3">
+
+              <select name="order" class="form-select">
+
+                <option value="create_date desc" t-att-selected="order == 'create_date desc'">
+Newest
+                </option>
+
+                <option value="create_date asc" t-att-selected="order == 'create_date asc'">
+Oldest
+                </option>
+
+                <option value="name asc" t-att-selected="order == 'name asc'">
+Name A-Z
+                </option>
+
+                <option value="name desc" t-att-selected="order == 'name desc'">
+Name Z-A
+                </option>
+
+                <option value="mileage asc" t-att-selected="order == 'mileage asc'">
+Mileage ↑
+                </option>
+
+                <option value="mileage desc" t-att-selected="order == 'mileage desc'">
+Mileage ↓
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="col-md-2">
+
+              <button type="submit" class="btn btn-primary w-100">
+
+Search
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="row mb-4">
+
+            <div class="col">
+
+              <div class="form-check form-check-inline">
+
+                <input class="form-check-input" type="checkbox" id="Available" name="state" value="available" t-att-checked="'available' in states and 'checked' or None"/>
+
+                <label for="Available" class="form-check-label">
+Available
+                </label>
+
+              </div>
+
+              <div class="form-check form-check-inline">
+
+                <input class="form-check-input" type="checkbox" id="Workshop" name="state" value="workshop" t-att-checked="'workshop' in states and 'checked' or None"/>
+
+                <label for="Workshop" class="form-check-label">
+Workshop
+                </label>
+
+              </div>
+
+              <div class="form-check form-check-inline">
+
+                <input class="form-check-input" type="checkbox" id="Sold" name="state" value="sold" t-att-checked="'sold' in states and 'checked' or None"/>
+
+                <label for="Sold" class="form-check-label">
+Sold
+                </label>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+        <div class="mb-3">
+
+          <strong>
+            <t t-esc="total"/>
+          </strong>
+
+vehicles found
+
+        </div>
+
+        <div class="row">
+          <t t-call="fleet_workshop.vehicle_cards"/>
+        </div>
+
+        <nav t-if="page_count > 1">
+
+          <ul class="pagination">
+
+            <t t-foreach="range(1, page_count + 1)" t-as="p">
+
+              <li t-att-class="'page-item active' if p == page else 'page-item'">
+
+                <a class="page-link" t-att-href="'/vehicules?page=%s%s' % (p, query_string)">
+
+                  <t t-esc="p"/>
+
+                </a>
+
+              </li>
+
+            </t>
+
+          </ul>
+
+        </nav>
+
+      </div>
+
+    </t>
+
+  </template>
+
+  <template id="vehicle_cards">
+
+    <div class="row">
+
+      <t t-foreach="vehicles" t-as="v">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <div class="card h-100 shadow-sm">
+
+            <t t-if="v.image">
+              <img t-att-src="'/web/image/fleet.vehicle/%s/image' % v.id" class="card-img-top" style="height:220px;object-fit:cover;"/>
+            </t>
+
+            <t t-else="">
+              <img src="/web/static/img/placeholder.png" class="card-img-top" style="height:220px;object-fit:cover;"/>
+            </t>
+
+            <div class="card-body">
+
+              <h5 class="card-title">
+
+                <a t-att-href="'/fleet/vehicle/%s' % v.slug">
+
+                  <t t-esc="v.name"/>
+
+                </a>
+
+              </h5>
+
+              <div>
+                <t t-esc="v.brand"/>
+ -
+                <t t-esc="v.model"/>
+              </div>
+
+              <div>
+                <t t-esc="v.immatriculation"/>
+              </div>
+
+              <div>
+                <t t-esc="v.mileage"/>
+ km
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </t>
+
+    </div>
+
+  </template>
+
+</odoo>

@@ -14,8 +14,14 @@
         'security/ir.model.access.csv',
         'views/vehicle_views.xml',
         'views/intervention_views.xml',
-        'views/website_templates.xml'
+        'views/vehicles_templates.xml',
+        'views/vehicle_templates.xml',
     ],
+    'assets': {
+    'web.assets_frontend': [
+        'fleet_workshop/static/src/js/vehicle_search.js',
+        ],
+    },
     'installable': True,
     'application': True,
 }
