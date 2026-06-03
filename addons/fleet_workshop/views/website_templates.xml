@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="vehicles_page" name="Fleet Vehicles">
+    <t t-call="website.layout">
+      <div class="container mt-5">
+        <h1 class="mb-4">Fleet Vehicles</h1>
+        <div class="row">
+          <t t-foreach="vehicles" t-as="v">
+            <div class="col-md-4 mb-4">
+<a t-att-href="'/vehicules/%s' % v.slug">
+<div class="card shadow-sm h-100">
+  <t t-if="v.image">
+    <img t-att-src="'/web/image/fleet.vehicle/%s/image' % v.id" class="card-img-top" style="height: 200px; object-fit: cover;"/>
+  </t>
+  <t t-else="">
+    <img src="/web/static/img/placeholder.png" class="card-img-top" style="height: 200px; object-fit: cover;"/>
+  </t>
+  <div class="card-body">
+    <h5 class="card-title">
+      <t t-esc="v.name"/>
+    </h5>
+    <t t-if="v.state == 'available'">
+      <span class="badge bg-success">Available</span>
+    </t>
+    <t t-if="v.state == 'workshop'">
+      <span class="badge bg-warning text-dark">In Workshop</span>
+    </t>
+    <t t-if="v.state == 'sold'">
+      <span class="badge bg-danger">Sold</span>
+    </t>
+    <hr/>
+    <p class="mb-1">
+      <strong>
+        <t t-esc="v.brand"/>
+ -        <t t-esc="v.model"/>
+      </strong>
+    </p>
+    <p class="mb-1">
+      <t t-esc="v.immatriculation"/>
+    </p>
+    <p class="mb-0">
+      <t t-esc="v.mileage"/>
+ km
+    </p>
+  </div>
+</div>
+</a>
+            </div>
+          </t>
+        </div>
+      </div>
+    </t>
+<!-- <t t-call="website.vehicle_detail"> -->
+
+  </template>
+
+<template id="vehicle_detail" name="Vehicle Detail">
+  <t t-call="website.layout">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <t t-if="vehicle.image">
+        <img t-att-src="'/web/image/fleet.vehicle/%s/image' % vehicle.id" style="width:100%;height:400px;object-fit:cover;"/>
+      </t>
+      <t t-else="">
+        <img src="/web/static/img/placeholder.png" style="width:100%;height:400px;object-fit:cover;"/>
+      </t>
+    </div>
+    <div class="col-md-6">
+      <h2 t-esc="vehicle.name"/>
+      <p>
+        <strong>Brand:</strong>
+        <t t-esc="vehicle.brand"/>
+      </p>
+      <p>
+        <strong>Model:</strong>
+        <t t-esc="vehicle.model"/>
+      </p>
+      <p>
+        <strong>Immatriculation:</strong>
+        <t t-esc="vehicle.immatriculation"/>
+      </p>
+      <p>
+        <strong>Mileage:</strong>
+<t t-esc="vehicle.mileage"/>
+<span>km</span>
+</p>
+<t t-if="vehicle.state == 'available'">
+<span class="badge bg-success">Available</span>
+</t>
+<t t-if="vehicle.state == 'workshop'">
+<span class="badge bg-warning text-dark">In Workshop</span>
+</t>
+<t t-if="vehicle.state == 'sold'">
+<span class="badge bg-danger">Sold</span>
+</t>
+</div>
+</div>
+</div>
+    </t>
+  </template>
+
+</odoo>

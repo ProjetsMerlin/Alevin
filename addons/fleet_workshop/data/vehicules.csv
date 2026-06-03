@@ -1,0 +1,21 @@
+name,brand,model,immatriculation,purchase_date,mileage,state
+CAR0001,Renault,Clio V,AB-123-CD,2022-03-15,45000,available
+CAR0002,Peugeot,208,CD-456-EF,2021-06-10,62000,workshop
+CAR0003,Volkswagen,Golf 8,EF-789-GH,2020-09-01,78000,available
+CAR0004,Toyota,Yaris,GH-321-IJ,2023-01-20,15000,available
+CAR0005,BMW,Serie 1,IJ-654-KL,2019-11-05,95000,sold
+CAR0006,Audi,A3,KL-987-MN,2020-02-17,84000,available
+CAR0007,Mercedes,A-Class,MN-111-OP,2021-08-23,54000,workshop
+CAR0008,Ford,Focus,OP-222-QR,2022-12-12,31000,available
+CAR0009,Opel,Astra,QR-333-ST,2018-04-14,120000,sold
+CAR0010,Hyundai,i30,ST-444-UV,2023-05-09,22000,available
+CAR0011,Kia,Cee'd,UV-555-WX,2021-07-19,61000,available
+CAR0012,Skoda,Octavia,WX-666-YZ,2020-10-30,87000,workshop
+CAR0013,Volvo,V40,YZ-777-AA,2019-03-11,99000,sold
+CAR0014,Tesla,Model 3,AA-888-BB,2022-11-01,28000,available
+CAR0015,Nissan,Leaf,BB-999-CC,2021-01-25,52000,available
+CAR0016,Citroen,C3,CC-101-DD,2020-06-14,76000,workshop
+CAR0017,Fiat,Panda,DD-202-EE,2018-09-09,130000,sold
+CAR0018,Seat,Leon,EE-303-FF,2023-02-28,18000,available
+CAR0019,Mazda,3,FF-404-GG,2022-07-07,34000,available
+CAR0020,Renault,Megane,GG-505-HH,2019-12-19,91000,workshop
